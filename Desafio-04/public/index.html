@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form action="/api/productos" method="post">
+        <ul>
+          <li>
+            <label for="title">Title:</label>
+            <input maxlength="20" placeholder="Ingrese el nombre del producto" type="text" id="title" name="title">
+          </li>
+          <li>
+            <label for="price">Price:</label>
+            <input maxlength="20" placeholder="Ingrese el precio del pruducto" type="text" id="price" name="price">
+          </li>
+          <li>
+            <label for="url">Thumbnail:</label>
+            <input placeholder="ingrese la URL de la imagen del producto" type="text" id="url" name="thumbnail">
+          </li>
+            <button id="button" type="submit">Enviar datos</button>
+        </ul>
+      </form>
+
+<!--       <script src="./script.js"></script>
+ --></body>
+</html>

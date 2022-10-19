@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Nombre",
+		"precio": 1900,
+		"thumbnail": "url",
+		"id": 1
+	},
+	{
+		"title": "Nombre",
+		"precio": 1900,
+		"thumbnail": "url",
+		"id": 2
+	},
+	{
+		"title": "Nombre",
+		"precio": 1900,
+		"thumbnail": "url",
+		"id": 3
+	},
+	{
+		"title": "Nombre",
+		"precio": 1900,
+		"thumbnail": "url",
+		"id": 4
+	}
+]
