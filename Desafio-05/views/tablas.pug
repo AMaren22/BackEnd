@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/style.css")
+        title Productos
+    body
+        div(id='formBody') 
+ 
+            table 
+                tr 
+                    th ID 
+                    th Nombre 
+                    th Precio 
+                    th URL
+                    th Foto 
+        
+                each value in dataJson
+                    tr
+                        td= value.id    
+                        td= value.title
+                        td= value.price
+                        td= value.thumbnail
+                        td
+                            img(src=value.thumbnail alt='Foto no disponible') 
+    include components/buttonToForm
