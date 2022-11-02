@@ -13,38 +13,47 @@ const initWsServer = (server) =>{
 
 
         socket.on('addProduct', async (product) =>{
-            product.price = Number(product.price);
+            try{
+                product.price = Number(product.price);
+    
+                validateBody(product);
+    
+                const dataJson = await readFile('productos');
+    
+                const newProduct = {
+                id: uuidv4(),
+                title: product.title,
+                price: product.price,
+                thumbnail: product.thumbnail,
+                };
+    
+                dataJson.push(newProduct);
+    
+                io.emit('addTable', dataJson[dataJson.length-1])
+    
+                await saveFile(dataJson,'productos');
 
-            validateBody(product);
-
-            const dataJson = await readFile('productos');
-
-            const newProduct = {
-            id: uuidv4(),
-            title: product.title,
-            price: product.price,
-            thumbnail: product.thumbnail,
-            };
-
-            dataJson.push(newProduct);
-
-            io.emit('addTable', dataJson[dataJson.length-1])
-
-            await saveFile(dataJson,'productos');
+            }catch (error){
+                console.log(error);
+            }
         })
 
         socket.on('newMessage', async (message) =>{
-            const messageJson = await readFile('messages')
-            const newMessage  = {
-                email: message.email,
-                msg: message.msg,
-                time: moment().format('h:mm a')
+            try{
+                const messageJson = await readFile('messages')
+                const newMessage  = {
+                    email: message.email,
+                    msg: message.msg,
+                    time: moment().format('h:mm a')
+                }
+                messageJson.push(newMessage)
+    
+                io.emit('renderMessage', messageJson[messageJson.length-1])
+    
+                await saveFile(messageJson,'messages')
+            }catch(error){
+                console.log(error);
             }
-            messageJson.push(newMessage)
-
-            io.emit('renderMessage', messageJson[messageJson.length-1])
-
-            await saveFile(messageJson,'messages')
         })
     })
 return io
