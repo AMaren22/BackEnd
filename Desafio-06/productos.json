@@ -1,0 +1,20 @@
+[
+	{
+		"title": "Celular Motorola Moto G52 128GB Negro",
+		"price": 70000,
+		"thumbnail": "https://images.fravega.com/f500/3718e2f904770c5a92c1d8578a4bd588.jpg",
+		"id": 1
+	},
+	{
+		"title": "Notebook Dell 15,6” Ryzen 5 8GB 256GB SSD Inspiron 15 3515 24DV0",
+		"price": 180000,
+		"thumbnail": "https://images.fravega.com/f500/ae40dd821ce32f7dac145b2b7324ac57.jpg",
+		"id": 2
+	},
+	{
+		"title": "Smart Tv Sansei Tds2243fipi Led Full Hd 43",
+		"price": 79000,
+		"thumbnail": "https://images.fravega.com/f500/3488c8fab923411f331522c2be832371.jpg",
+		"id": 3
+	}
+]

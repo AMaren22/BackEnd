@@ -1,0 +1,27 @@
+[
+	{
+		"email": "augusto@augusto.com",
+		"msg": "Mensaje 1",
+		"time": "12:19 am"
+	},
+	{
+		"email": "augusto@augusto.com",
+		"msg": "Mensaje2",
+		"time": "4:12 pm"
+	},
+	{
+		"email": "augusto2@augusto.com",
+		"msg": "Mensaje 1",
+		"time": "4:12 pm"
+	},
+	{
+		"email": "augusto2@augusto.com",
+		"msg": "Mensaje2",
+		"time": "4:57 pm"
+	},
+	{
+		"email": "augusto3@augusto.com",
+		"msg": "Mensaje 1",
+		"time": "4:57 pm"
+	}
+]
