@@ -1,0 +1,36 @@
+[
+	{
+		"id": "a3986ae8-a18b-4be5-a698-077de3f5fb8e",
+		"timestap": "7/11/2022 17:20:12",
+		"productos": [
+			{},
+			{
+				"id": "cda7d2a9-4ac0-4a1e-8c9d-098e65be799b",
+				"timestamp": "7/11/2022 17:09:46",
+				"nombre": "Celular Motorola Moto G52 128GB Negro",
+				"descripcion": "SmartPhone",
+				"codigo": 1001,
+				"foto": "https://images.fravega.com/f500/3718e2f904770c5a92c1d8578a4bd588.jpg",
+				"precio": 70000,
+				"stock": 70000
+			}
+		]
+	},
+	{
+		"id": "5cf32d45-72d2-4d36-af98-c83f816716ca",
+		"timestap": "7/11/2022 17:20:40",
+		"productos": [
+			{},
+			{
+				"id": "02ed2c31-a525-49ae-8734-dea0c480cc6a",
+				"timestamp": "7/11/2022 17:16:36",
+				"nombre": "Smart Tv Sansei Tds2243fipi Led Full Hd 43",
+				"descripcion": "Smart Tv",
+				"codigo": 1003,
+				"foto": "https://images.fravega.com/f500/3488c8fab923411f331522c2be832371.jpg",
+				"precio": 100000,
+				"stock": 7
+			}
+		]
+	}
+]
