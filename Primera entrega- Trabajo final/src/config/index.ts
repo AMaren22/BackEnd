@@ -2,7 +2,7 @@ import { NextFunction,Request,Response } from "express";
 
 export const PUERTO:string|number = process.env.PORT || 8080;
 
-const admin:boolean = true
+const admin:boolean = false
 
 export const auth = (req:Request,res:Response,next:NextFunction): void =>{
     if (!admin){

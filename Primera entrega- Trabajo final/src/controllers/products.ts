@@ -34,7 +34,7 @@ class Products {
                 codigo: data.codigo,
                 foto: data.foto,
                 precio: data.precio,
-                stock: data.precio
+                stock: data.stock
             }
     
             dataJson.push(newProduct)
