@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    body
+        div(id='tableBody')
+            table 
+                tr 
+                    th ID 
+                    th Nombre 
+                    th Precio 
+                    th Foto 
+                tbody(id='tbody')
+                    each value in dataJson
+                        tr
+                            td= value.id    
+                            td= value.title
+                            td= value.price
+                            td
+                                img(src=value.thumbnail alt='Foto no disponible') 
