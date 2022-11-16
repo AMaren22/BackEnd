@@ -16,10 +16,8 @@ const initWsServer = (server) =>{
                 price: product.price,
                 thumbnail: product.thumbnail,
                 };
-
                 await mySqlDb.insertData(newProduct)
-                const dataJson = await mySqlDb.getAll()
-                io.emit('addTable', dataJson[dataJson.length-1])
+                io.emit('addTable', newProduct)
             }catch (error){
                 console.log(error)
             }
@@ -32,8 +30,7 @@ const initWsServer = (server) =>{
                     time: moment().format('h:mm a')
                 }
                 await sqLiteDb.insertData(newMessage)
-                const messageJson = await sqLiteDb.getAll()
-                io.emit('renderMessage', messageJson[messageJson.length-1])    
+                io.emit('renderMessage', newMessage)    
             }catch(error){
                 console.log(error)
             }

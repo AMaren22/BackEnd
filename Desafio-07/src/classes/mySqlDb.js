@@ -33,6 +33,5 @@ class Db {
             console.log(error);
         }
     }
-
 }
 export const mySqlDb = new Db() 

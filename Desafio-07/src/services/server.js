@@ -1,7 +1,6 @@
 import express from "express"
 import http from 'http'
 import path from "path"
-import mainRouter from "../routes/mainRouter.js"
 import { fileURLToPath } from "url"
 import { sqLiteDb } from "../classes/sqLiteDb.js"
 import { mySqlDb } from "../classes/mySqlDb.js"
@@ -17,7 +16,6 @@ const viewsPath = path.resolve(__dirname, '../../views')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(express.static(publicPath))
-app.use('/api', mainRouter)
 app.set('view engine', 'pug')
 app.set('views', viewsPath )
 
