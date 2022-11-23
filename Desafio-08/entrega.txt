@@ -1,0 +1,172 @@
+// Creamos la db
+use ecommerce // Al no existir la base de datos al hacer switch nos la Creamos
+
+// Creamos la colección "products"
+db.createCollection('products')
+
+// Creamos la colección messages
+db.createCollection('message')
+
+// Creamos un array con 10 mensajes
+let arrayMessage = [
+    {
+        email: 'augusto@augusto.com',
+        msg: 'Hola mundo',
+        time: '11:23 am'
+    },
+    {
+        email: 'augusto2@augusto2.com',
+        msg: 'Chau mundo',
+        time: '11:24 am'
+    },
+    {
+        email: 'augusto@augusto.com',
+        msg: 'Hola mundo',
+        time: '11:25 am'
+    },
+    {
+        email: 'augusto2@augusto2.com',
+        msg: 'Chau mundo',
+        time: '11:26 am'
+    },
+    {
+        email: 'augusto@augusto.com',
+        msg: 'Hola mundo',
+        time: '11:27 am'
+    },
+    {
+        email: 'augusto2@augusto2.com',
+        msg: 'Chau mundo',
+        time: '11:28 am'
+    },
+    {
+        email: 'augusto@augusto.com',
+        msg: 'Hola mundo',
+        time: '11:29 am'
+    },
+    {
+        email: 'augusto2@augusto2.com',
+        msg: 'Chau mundo',
+        time: '11:30 am'
+    },
+    {
+        email: 'augusto@augusto.com',
+        msg: 'Hola mundo',
+        time: '11:31 am'
+    },
+    {
+        email: 'augusto2@augusto2.com',
+        msg: 'Chau mundo',
+        time: '11:32 am'
+    }
+]
+
+// Insertamos los mensajes en nuestra colección
+db.message.insertMany(arrayMessage)
+
+// Creamos una array con 10 productos
+let arrProducts = [
+    {
+        title:'Producto 01',
+        price: 120,
+        thumbnail:'Thumbnail 01'
+    },
+    {
+        title:'Producto 02',
+        price: 580,
+        thumbnail:'Thumbnail 02'
+    },
+    {
+        title:'Producto 03',
+        price: 900,
+        thumbnail:'Thumbnail 03'
+    },
+    {
+        title:'Producto 04',
+        price: 1280,
+        thumbnail:'Thumbnail 04'
+    },
+    {
+        title:'Producto 05',
+        price: 1700,
+        thumbnail:'Thumbnail 05'
+    },
+    {
+        title:'Producto 06',
+        price: 2300,
+        thumbnail:'Thumbnail 06'
+    },
+    {
+        title:'Producto 07',
+        price: 2860,
+        thumbnail:'Thumbnail 07'
+    },
+    {
+        title:'Producto 08',
+        price: 3350,
+        thumbnail:'Thumbnail 08'
+    },
+    {
+        title:'Producto 09',
+        price: 4320,
+        thumbnail:'Thumbnail 09'
+    },
+    {
+        title:'Producto 10',
+        price: 4990,
+        thumbnail:'Thumbnail 10'
+    }
+]
+
+// Insertamos los productos en nuestra colección
+db.products.insertMany(arrProducts)
+
+// Mostramos el contenido de ambas colecciónes
+db.message.find().pretty()
+db.products.find().pretty()
+
+// Contamos la cantidad de documentos en ambas colecciones
+db.message.countDocuments()
+db.products.countDocuments()
+
+//Agregamos un producto nuevo a la coleccion 'products'
+db.products.insertOne({title:'producto 11',price: 4999, thumbnail:'Thumbnail 11'})
+
+//Mostramos los documentos que posean un precio menor a 1000 de la colección 'products'
+db.products.find({'price': {$lt: 1000}})
+
+// Mostramos los documentos que posean un precio mayo a 1000 y menos a 3000 de la colección 'products'
+db.products.find({
+  $and:[
+    {price: {$gt: 1000}},
+    {price: {$lt: 3000}}
+    ]
+})
+
+// Mostramos los documentos que posean un precio mayos a 3000 en la colección 'products'
+db.products.find({price: {$gt: 3000}})
+
+// Ordenamos los documentos de la colección 'products' del más barato al más caro, mostramos solo el nombre del tercer documento más barato
+db.products.find({},{title:1}).sort({price:1}).skip(2).limit(1)
+
+//Agregamos el campo 'stock' en todos los documentos de la colección 'products'
+db.products.updateMany({},{$set:{stock:100}})
+
+//Actualizamos todos los documentos de la colección 'products' que posean precio mayo a 4000, se le pasa el stock a 0
+db.products.updateMany({price:{$gt:4000}},{$set: {stock:0}})
+
+//Eliminamos todos los documentos de la colección 'products' que posean precios menor a 1000
+db.products.deleteMany({price: {$lt:1000}})
+
+// Creamos un useario de solo lectura para la db ecommerce
+db.createUser(
+  {
+    user:'pepe',
+    pwd:'asd456',
+    roles:[
+      {
+        role:'read',db:'ecommerce'
+      }]
+})
+
+** PARA PODER UTILIZAR EL USUARIO REINICIAMOS EL SERVIDO CON mongod --auth y desde el cliente entramos como mongosh -u pepe -p asd456
