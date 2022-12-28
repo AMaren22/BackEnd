@@ -1,0 +1,29 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/style.css")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css", integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l", crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js")
+
+        title Formulario
+    body
+        include components/loginAlert
+        div(id='formBody') 
+            form(action="/api/productos", method="post" id="formProduct")
+                ul
+                    li
+                        label(for="title") Title:
+                        input(type="text" maxlength="50" placeholder="Ingrese el nombre del producto" id='title' required name='title') 
+                    li
+                        label(for="price") Price: 
+                        input(type="number" required placeholder="Ingrese el precio del producto" id='price' name='price') 
+                    li 
+                        label(for="url") Url del producto: 
+                        input(placeholder="ingrese la URL de la imagen del producto" required type="text" id="url" name="thumbnail")
+                    button(type="submit") Enviar Datos
+        include tablas
+        include chat
+    script(src="/socket.io/socket.io.js") 
+    script(src="/js/index.js") 
