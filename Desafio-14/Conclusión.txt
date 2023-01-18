@@ -1,0 +1,1 @@
+Como se puede observar a lo largo de todas la pruebas realizadas, el código donde se muestra la información a través de un console.log, antes de enviársela al usuario, el claramente más lenta , consume más recursos y entorpece el correcto funcionamiento del código. Esto puede ser que se dé, ya que el consolo.log, es un método sincrónico.
