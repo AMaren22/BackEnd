@@ -1,0 +1,21 @@
+[31merror[39m || E11000 duplicate key error collection: ecommerce-3-ENTREGA.users index: email_1 dup key: { email: "augustomarengo3@hotmail.com" } || Feb-01-2023 02:54:54
+[31merror[39m || E11000 duplicate key error collection: ecommerce-3-ENTREGA.users index: email_1 dup key: { email: "augustomarengo3@hotmail.com" } || Feb-01-2023 02:56:10
+[31merror[39m || Cannot set headers after they are sent to the client || Feb-01-2023 03:55:12
+[31merror[39m || Cannot set headers after they are sent to the client || Feb-01-2023 03:55:13
+[31merror[39m || The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers. || Feb-01-2023 16:07:26
+[31merror[39m || Invalid From and To pair. From and To should be of the same channel || Feb-01-2023 16:07:27
+[31merror[39m || Falta número de telefono, no se puede enviar mensaje || Feb-01-2023 16:16:56
+[31merror[39m || The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers. || Feb-01-2023 16:17:12
+[31merror[39m || The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers. || Feb-01-2023 16:17:45
+[31merror[39m || Invalid From and To pair. From and To should be of the same channel || Feb-01-2023 16:19:33
+[31merror[39m || Falta número de telefono, no se puede enviar mensaje || Feb-01-2023 16:25:20
+[31merror[39m || Invalid From and To pair. From and To should be of the same channel || Feb-01-2023 16:25:35
+[31merror[39m || Invalid From and To pair. From and To should be of the same channel || Feb-01-2023 16:27:35
+[31merror[39m || The 'From' number  is not a valid phone number, shortcode, or alphanumeric sender ID. || Feb-01-2023 16:30:00
+[31merror[39m || Twilio could not find a Channel with the specified From address || Feb-01-2023 16:34:05
+[31merror[39m || Twilio could not find a Channel with the specified From address || Feb-01-2023 16:50:59
+[31merror[39m || Twilio could not find a Channel with the specified From address || Feb-01-2023 16:53:28
+[31merror[39m || No existe el producto o el carrito seleccionado || Feb-01-2023 17:22:28
+[31merror[39m || No existe el producto o el carrito seleccionado || Feb-01-2023 17:22:55
+[31merror[39m || The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers. || Feb-01-2023 17:24:10
+[31merror[39m || The number  is unverified. Trial accounts cannot send messages to unverified numbers; verify  at twilio.com/user/account/phone-numbers/verified, or purchase a Twilio number to send messages to unverified numbers. || Feb-01-2023 17:25:08
