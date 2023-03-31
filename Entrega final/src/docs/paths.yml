@@ -1,0 +1,730 @@
+components:
+    schemas:
+      user:
+        type: object
+        properties:
+          email:
+            type: string
+            description: Email con el cual el usuario se va a loguear
+          password:
+            type: string
+            description: Contraseña que el usuario va a utilizar para loguearse
+          name:
+            type: string
+            description: Nombre del usuario
+          age:
+            type: number
+            description: Edad del usurio
+          adress:
+            type: string
+            description: Dirección del usuario
+          phone:
+            type: string
+            description: Numero del telefono del usuario (NO incluir el +549)
+          avatar:
+            type: string
+            description: Foto del usuario
+          admin:
+            type: boolean
+            description: Nos dice si el usuario es administrador o no
+        required:
+          - email
+          - password
+          - name
+          - age
+          - adress
+          - phone
+        example:
+          email: amarengo.dev@gmail.com
+          password: "1234Admin"
+          name: Augusto
+          adress: La Plata
+          age: 28
+          phone: "+54900000000"
+          avatar: Foto
+          admin: true
+      loginUser:
+        type: object
+        properties:
+          email:
+            type: string
+            description: Ingrese su email
+          password:
+            type: string
+            description: Ingrese su contraseña
+        required:
+          - email
+          - password
+        example:
+          email: amarengo.dev@gmail.com
+          password: "1234Admin"
+      products:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Identidicador único de cada producto
+          timestamp:
+            type: string
+            description: Fecha y hora en la que se guardó el producto
+          name:
+            type: string
+            description: Nombre del producto
+          description:
+            type: string
+            description: Descripción del producto
+          code:
+            type: number
+            description: Codigo interno del producto
+          photo:
+            type: string
+            description: Foto del producto
+          price:
+            type: number
+            description: Precio del producto en pesos argentinos
+          stock:
+            type: number
+            description: Cantidad del producto en stock
+        example:
+          id: 6423c56dec2030526b0d5f4e
+          timestamp: 29/3/2023, 01:57:19
+          name: Celular Motorola Moto G52 128GB Negro
+          description: SmartPhone
+          code: 1001
+          photo: https://images.fravega.com/f500/3718e2f904770c5a92c1d8578a4bd588.jpg
+          price: 70000
+          stock: 30
+      productsDTO:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Identidicador único de cada producto
+          name:
+            type: string
+            description: Nombre del producto
+          code:
+            type: number
+            description: Codigo interno del producto
+          description:
+            type: string
+            description: Descripción del producto
+          price:
+            type: number
+            description: Precio del producto en pesos argentinos
+        example:
+          id: 6423c56dec2030526b0d5f4e
+          name: Celular Motorola Moto G52 128GB Negro
+          code: 1001
+          description: SmartPhone
+          price: 70000
+      newProduct:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Nombre del producto
+          description:
+            type: string
+            description: Descripción del producto
+          code:
+            type: number
+            description: Codigo interno del producto
+          photo:
+            type: string
+            description: Foto del producto
+          price:
+            type: number
+            description: Precio del producto en pesos argentinos
+          stock:
+            type: number
+            description: Cantidad del producto en stock
+        required:
+          - name
+          - description
+          - code
+          - photo
+          - price
+          - stock
+        example:
+          name: Celular Motorola Moto G52 128GB Negro
+          description: SmartPhone
+          code: 1001
+          photo: https://images.fravega.com/f500/3718e2f904770c5a92c1d8578a4bd588.jpg
+          price: 70000
+          stock: 30
+      orders:
+        type: object
+        properties:
+          id:
+            type: string
+            description: Identificador unico de cara orden generada
+          timestamp:
+            type: string
+            description: Fecha y hora en la que se generó la orden
+          products:
+            type: array
+            description: Productos comprados
+            items:
+                $ref: '#/components/schemas/productsDTO'
+          email:
+            type: string
+            description: Email con el cual el usuario se registró
+          estado:
+            type: string
+            description: Esyado de la orden
+        example:
+          id: 6425da12d4b284f5225181a3
+          timestamp: 30/3/2023, 15:50:43
+          products: Ver ejemplo de productsDTO
+          email: augustomarengo@hotmail.com
+          estado: Generada
+      pictureResponse:
+        type: object
+        properties:
+          fieldname:
+            type: string
+          originalName:
+            type: string
+          encoding:
+            type: string
+          mimetype:
+            type: string
+          destination:
+            type: string
+          filename:
+            type: string
+          path:
+            type: string
+          size:
+            type: number
+        example:
+          fieldname: imagen
+          originalname: 119970826_333488651096574_4117211656351475494_n.jpg
+          encoding: 7bit
+          mimetype: image/jpeg
+          destination: ./uploads
+          filename: 6d299410dc05953ee46d78b750466370
+          path: uploads\\6d299410dc05953ee46d78b750466370
+          size": 15639 
+paths:
+  /api/login:
+    post:
+      tags:
+        - User
+      summary: Login de usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/loginUser'
+        required: true
+      responses:
+        '200':
+          description: Bienvenido "nombre del usuario"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Bienvenido Usuario
+                example:
+                  msg: Bienvenido <Nombre de usuario>
+                
+        '401':
+          description: Usuario no autorizado
+  /api/signup:
+    post:
+      tags:
+        - User
+      summary: Creacion de usuario
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        '200':
+          description: Usuario creado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: Usuario creado con exito
+                  status:
+                    type: string
+                    description: Mail enviado con exito
+                example:
+                  msg: Usuario creado con exito
+                  status: Mail enviado con exito
+        '401':
+          description: El usuario ya existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    description: El usuaior ya existe
+                example:
+                  msg: El usuario ya existe
+  /api/logout:
+    get:
+      tags:
+        - User
+      summary: Eliminamos la sesión
+      responses:
+        '200':
+          description: Se deslogueó correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: Hasta luego <Nombre del usuario>
+        '500':
+          description: Usuario NO logueado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  msg: Cannot read properties of undefined (reading 'user')
+        
+  /api/productos:
+    get:
+      summary: Muestra todos los productos
+      tags:
+        - Productos
+      responses:
+        '200':
+          description: todos los productos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/products'
+    post:
+      tags:
+        - Productos
+      summary: Creacion de productos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newProduct'
+        required: true
+      responses:
+        '200':
+          description: Se agrego el producto correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto se agregó correctamente.
+        '401':
+          description: Usuario no logueado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: Please log in
+        '400':
+          description: Faltaron campos obligatorios/ tipo de dato incorrecto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: datos invalidos
+  /api/productos/{id}:
+    get:
+      summary: Devuelve el producto por id
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Producto encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataJson:
+                      $ref: '#/components/schemas/products'
+        '404':
+          description: El producto no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: No existe producto con ese ID
+    put:
+      summary: Editamos un producto
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newProduct'
+        required: true
+      responses:
+        '200':
+          description: Se modificó el producto correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto con <ID del producto> Se modificó correctamente
+        '400':
+          description: Faltaron campos obligatorios/ tipo de dato incorrecto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: datos invalidos
+        '401':
+          description: Usuario no logueado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: Please log in
+    delete:
+      summary: Elimina el producto por el ID
+      tags:
+        - Productos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Se eliminó el producto correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto con <ID del producto> Se ha eliminado correctamente
+        '401':
+          description: Usuario no logueado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: Please log in
+  /api/carrito:
+    post:
+      tags:
+        - Carrito
+      summary: Creacion del carrito de compra
+      responses:
+        '200':
+          description: Se creo el carrito correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El ID del carrito creado es <ID>
+  /api/carrito/{id}:
+    delete:
+      tags:
+        - Carrito
+      summary: Eliminamos el carrito por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Se eliminó el carrito correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El carrito con id <ID> fue eliminado correctamente
+  /api/carrito/{id}/productos:
+    get:
+      summary: Traemos los productos de un carrito en específico
+      tags:
+        - Carrito
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: todos los productos
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dataJson:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/products'
+        '404':
+          description: El carrito no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: No existe carrito con ese ID
+    post:
+      tags:
+        - Carrito
+      summary: Agrega el producto del Id(body) al carrito seleccionado(id params)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del carrito donde queremos agregar el prodcuto
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  description: Id del producto a agregar
+              example:
+                id: 6423c53aec2030526b0d5f4a
+      responses:
+        '200':
+          description: Se agrego el producto correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto con el id <ID prodcuto> se ha agregado correctamente al carrito con id <id Carrito>
+        '404':
+          description: El producto o el carrito no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto o el carrito NO existen
+          
+  /api/carrito/{id}/buy:
+    get:
+      tags:
+        - Carrito
+      summary: Realizamos la compra del carrito seleccionado
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Compra finalizada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  ordenGenerated:
+                    $ref: '#/components/schemas/orders'
+        '404':
+          description: El carrito no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: No existe el carrito que quieres comprar
+        '401':
+          description: Usuario no logueado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: Please log in
+  /api/carrito/{id}/productos/{id_prod}:
+    delete:
+      tags:
+        - Carrito
+      summary: Eliminamos el producto seleccionado (id_prod) del carrito seleccionado (id)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del carrito que deseamos encontrar
+          schema:
+            type: string
+        - name: id_prod
+          in: path
+          required: true
+          description: ID del producto que deseamos encontrar
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Se elimino el producto del carrito correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto con id <ID producto>, fue eliminado del carrito <ID carrito>
+        '404':
+          description: El producto o el carrito no existe
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                example:
+                  msg: El producto o el carrito NO existen
+  /api/profile:
+    post:
+      tags:
+        - User
+      summary: Carga de imagen
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                imagen:
+                  type: file
+        required: true
+      responses:
+        '200':
+          description: Se cargó correctamente la imagen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pictureResponse'
+        
+  
+        
+        
+        
+      
+  
+                
+      
+
+      
+    
+        
+      
+

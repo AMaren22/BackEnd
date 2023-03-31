@@ -1,0 +1,7 @@
+div(class="chat-messages" id='messageContainer')
+    each value in messageJson
+            div(class="message")
+                p(class="meta")= value.email 
+                    span=value.timestamp
+                    span=value.type 
+                p(class="text")=value.message 
